@@ -18,7 +18,9 @@
   ],
   "rules": {
     "semi": "off",
+    "indent": "off",
     "react/jsx-filename-extension": "off",
+    "jsx-quotes": "off",
     "no-use-before-define": "off",
     "react/prefer-stateless-function": "off",
     "no-tabs": "off",

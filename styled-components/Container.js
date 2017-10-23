@@ -4,6 +4,10 @@ import styled from 'styled-components/native'
 const Container = styled.View`
   padding: 16px;
   
+  ${props => props.colorIndex && `
+    background-color: ${props.theme.colorIndex[props.colorIndex]}
+  `}
+  
   ${props => props.pad === 'none' && `
     padding: 0;
   `}
@@ -38,4 +42,24 @@ const Container = styled.View`
   `}
 `
 
-export default Container
+const CardContainer = Container.extend`
+  background-color: ${props => props.theme.colorIndex['light-1']};
+`
+
+const Header = Container.extend`
+  flex-direction: row;
+  padding: 8px;
+  background-color: ${props => props.theme.colorIndex['light-1']};
+  justify-content: space-between;
+  align-items: center;
+  
+  ${props => props.colorIndex && `
+    background-color: ${props.theme.colorIndex[props.colorIndex]};
+  `}
+`
+
+export {
+  Container,
+  CardContainer,
+  Header,
+}

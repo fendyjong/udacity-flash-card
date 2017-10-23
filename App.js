@@ -1,34 +1,52 @@
 import React from 'react'
-import { StatusBar, View } from 'react-native'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import { StackNavigator } from 'react-navigation'
+
 import { Constants } from 'expo'
-
 import { ThemeProvider } from 'styled-components/native'
-import { THEME, Button, Text, Container } from './styled-components'
 
+import { StatusBar, View } from 'react-native'
+import { THEME, Container } from './styled-components'
+
+import reducers from './reducers'
+import DeckList from './components/DeckList'
+import Deck from './components/Deck'
+
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: DeckList,
+    navigationOptions: {
+      headerTitle: 'Decks',
+      headerTintColor: THEME.colorIndex['light-1'],
+      headerStyle: {
+        backgroundColor: THEME.colorIndex.brand,
+      },
+    },
+  },
+  Deck: {
+    screen: Deck,
+  },
+})
 
 export default class App extends React.Component {
   render() {
     return (
-      <ThemeProvider theme={THEME}>
-        <Container pad='none'>
-          <Container
-            style={{
-              backgroundColor: THEME.primary_color,
-              height: Constants.statusBarHeight,
-            }}>
-            <StatusBar translucent />
+      <Provider store={createStore(reducers)}>
+        <ThemeProvider theme={THEME}>
+          <Container pad='none' colorIndex='light-2' style={{ height: '100%' }}>
+            <View
+              style={{
+                backgroundColor: THEME.colorIndex.brand,
+                height: Constants.statusBarHeight,
+              }}
+            >
+              <StatusBar translucent barStyle='light-content' />
+            </View>
+            <MainNavigator initialRouteName='Home' />
           </Container>
-          <Container>
-            <Button>
-              <Text>Button</Text>
-            </Button>
-
-            <Text>Open up App.js to start working on your app!</Text>
-            <Text>Changes you make will automatically reload.</Text>
-            <Text>Shake your phone to open the developer menu.</Text>
-          </Container>
-        </Container>
-      </ThemeProvider>
+        </ThemeProvider>
+      </Provider>
     )
   }
 }
