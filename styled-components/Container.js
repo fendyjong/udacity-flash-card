@@ -42,10 +42,6 @@ const Container = styled.View`
   `}
 `
 
-const CardContainer = Container.extend`
-  background-color: ${props => props.theme.colorIndex['light-1']};
-`
-
 const Header = Container.extend`
   flex-direction: row;
   padding: 8px;
@@ -56,6 +52,11 @@ const Header = Container.extend`
   ${props => props.colorIndex && `
     background-color: ${props.theme.colorIndex[props.colorIndex]};
   `}
+`
+
+const CardContainer = Container.extend`
+  background-color: ${props => props.theme.colorIndex['light-1']};
+  border-radius: 2px;
 `
 
 export {

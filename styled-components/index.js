@@ -1,6 +1,7 @@
 import { Button, ActionButton } from './Button'
 import { Label, Heading, Headline, Paragraph } from './Text'
 import { Container, CardContainer, Header } from './Container'
+import Card from './Card'
 
 export const THEME = {
   colorIndex: {
@@ -38,6 +39,7 @@ export const THEME = {
 export {
   Container,
   CardContainer,
+  Card,
 
   Header,
 

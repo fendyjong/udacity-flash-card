@@ -1,38 +1,28 @@
 import React from 'react'
+import { StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { CardContainer, Heading } from '../styled-components'
+import { Card, Heading } from '../styled-components'
+import Styles from '../styled-components/Styles'
 
 const Deck = ({
-                pad,
-                description,
-                heading,
-                marginTop,
+                title,
+                noOfCards,
               }) => (
-  <CardContainer pad={pad} align='center' style={{ marginTop }}>
-    <Heading>{heading}</Heading>
-    <Heading tag='h4' colorIndex='grey-4-a'>{description}</Heading>
-  </CardContainer>
+  <Card style={StyleSheet.flatten([Styles['shadow-1'], Styles.marginTopMedium])}>
+    <Heading>{title}</Heading>
+    <Heading tag='h4' colorIndex='grey-4-a'>{noOfCards} Cards</Heading>
+  </Card>
 )
 
 Deck.defaultProps = {
-  pad: 'medium',
-  description: null,
-  heading: null,
-  marginTop: 0,
+  title: '',
+  noOfCards: '',
 }
 
 Deck.propTypes = {
-  pad: PropTypes.string,
-  description: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-  ]),
-  heading: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-  ]),
-  marginTop: PropTypes.number,
+  title: PropTypes.string,
+  noOfCards: PropTypes.string,
 }
 
 export default connect()(Deck)

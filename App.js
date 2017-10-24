@@ -21,6 +21,10 @@ const MainNavigator = StackNavigator({
       headerTintColor: THEME.colorIndex['light-1'],
       headerStyle: {
         backgroundColor: THEME.colorIndex.brand,
+        shadowColor: '#9E9E9E',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 1,
+        shadowRadius: 2,
       },
     },
   },

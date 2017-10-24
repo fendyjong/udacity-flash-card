@@ -17,12 +17,15 @@
     "airbnb"
   ],
   "rules": {
+    "react/jsx-filename-extension": "off",
+    "react/prefer-stateless-function": "off",
+    "react/forbid-prop-types": "off",
+    "react/jsx-indent": "off",
+    "import/no-extraneous-dependencies": "off",
     "semi": "off",
     "indent": "off",
-    "react/jsx-filename-extension": "off",
     "jsx-quotes": "off",
     "no-use-before-define": "off",
-    "react/prefer-stateless-function": "off",
     "no-tabs": "off",
     "no-undef": "off"
   }
