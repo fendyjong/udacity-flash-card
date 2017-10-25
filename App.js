@@ -12,6 +12,7 @@ import { THEME, Container } from './styled-components'
 import reducers from './reducers'
 import DeckList from './components/DeckList'
 import Deck from './components/Deck'
+import DeckForm from './components/DeckForm'
 
 const MainNavigator = StackNavigator({
   Home: {
@@ -30,6 +31,9 @@ const MainNavigator = StackNavigator({
   },
   Deck: {
     screen: Deck,
+  },
+  DeckForm: {
+    screen: DeckForm,
   },
 })
 

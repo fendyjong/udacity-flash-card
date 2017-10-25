@@ -10,6 +10,11 @@ const Styles = StyleSheet.create({
   marginTopLarge: {
     marginTop: 24,
   },
+
+  alignCenter: {
+    alignItems: 'center',
+  },
+
   'shadow-1': {
     shadowColor: '#9E9E9E',
     shadowOffset: { width: 0, height: 2 },

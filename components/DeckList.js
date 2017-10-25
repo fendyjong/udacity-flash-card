@@ -11,14 +11,21 @@ import {
 import Deck from './Deck'
 
 class DeckList extends Component {
+  handleActionButton = () => {
+    this.props.navigation.navigate('DeckForm')
+  }
+
   render() {
     return (
       <Container pad='none' style={{ flex: 1 }}>
         <Container>
-          <Deck title='test' noOfCards='0' />
+          <Deck title='test' noOfCards='0' onPress={this.handleActionButton} />
           <Deck title='test' noOfCards='0' />
         </Container>
-        <ActionButton>
+        <ActionButton
+          onPress={this.handleActionButton}
+          activeOpacity={0.4}
+        >
           <Label>Button</Label>
         </ActionButton>
       </Container>

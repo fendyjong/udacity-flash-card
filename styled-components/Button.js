@@ -7,6 +7,7 @@ const Button = styled.TouchableOpacity`
   margin: 0;
   border: 2px solid ${props => props.theme.colorIndex['grey-2']};
   background-color: ${props => props.theme.colorIndex['light-1']};
+  align-self: flex-start
   
   ${props => props.flat && props.colorIndex && `
     border: 2px solid ${props.theme.colorIndex[props.colorIndex]};
