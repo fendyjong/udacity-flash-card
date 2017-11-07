@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Card, Button, Label } from '../styled-components'
+import { Card, Button, Label, Heading, Box } from '../styled-components'
 import Styles from '../styled-components/Styles'
 
 class DeckForm extends Component {
@@ -20,16 +20,25 @@ class DeckForm extends Component {
     const { title } = this.state
 
     return (
-      <Card style={StyleSheet.flatten([Styles['shadow-1'], Styles.marginTopMedium])}>
-        <TextInput
-          style={{ width: '100%', paddingTop: 8, paddingBottom: 8 }}
-          placeholder='Title'
-          value={title}
-          onChangeText={this.handleInputTitle}
-        />
-        <Button>
-          <Label>Submit</Label>
-        </Button>
+      <Card pad='medium'
+            align='center'
+            justify='flex-start'
+            full={true}>
+        <Heading align='center'>What is the title of your new deck?</Heading>
+        <Box align='center'
+             justify='space-around'
+             style={{ marginTop: 20, height: 140, width: '100%' }}>
+          <TextInput
+            style={{ width: '100%', paddingTop: 8, paddingBottom: 8 }}
+            placeholder='Title'
+            value={title}
+            onChangeText={this.handleInputTitle}
+          />
+          <Button colorIndex='brand'
+                  style={{ width: 160 }}>
+            <Label colorIndex='light-1'>Submit</Label>
+          </Button>
+        </Box>
       </Card>
     )
   }

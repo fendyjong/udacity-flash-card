@@ -1,35 +1,46 @@
 import React from 'react'
-import { TouchableHighlight, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
-import { CardContainer } from '../styled-components'
+import { CardBox } from '../styled-components'
 
 const Card = ({
                 pad,
                 style,
+                justify,
+                align,
+                full,
                 children,
                 onPress,
               }) => (
-  <TouchableOpacity
-    onPress={onPress}
-    activeOpacity={0.8}
-  >
-    <CardContainer pad={pad} style={style}>
-      {children}
-    </CardContainer>
-  </TouchableOpacity>
+  <CardBox pad={pad}
+           style={style}
+           justify={justify}
+           align={align}
+           full={full}
+           onStartShouldSetResponderCapture={_ => onPress !== null}
+           onMoveShouldSetResponderCapture={_ => false}
+           onResponderRelease={onPress}>
+    {children}
+  </CardBox>
 )
+
+// TODO https://facebook.github.io/react-native/docs/panresponder.html
 
 Card.defaultProps = {
   pad: 'medium',
   style: {},
+  justify: '',
+  align: '',
+  full: false,
   children: null,
-  onPress: () => {
-  },
+  onPress: null,
 }
 
 Card.propTypes = {
   pad: PropTypes.string,
   style: PropTypes.object,
+  justify: PropTypes.string,
+  align: PropTypes.string,
+  full: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.object,

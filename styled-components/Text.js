@@ -6,7 +6,11 @@ const DefaultText = styled.Text`
   font-size: 16px;
   
   ${props => props.colorIndex && `
-    color: ${props.theme.colorIndex[props.colorIndex]}
+    color: ${props.theme.colorIndex[props.colorIndex]};
+  `}
+  
+  ${props => props.align && `
+    text-align: ${props.align};
   `}
 `
 

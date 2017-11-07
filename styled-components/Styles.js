@@ -1,6 +1,15 @@
 import { StyleSheet } from 'react-native'
 
 const Styles = StyleSheet.create({
+  marginVerticalMedium: {
+    marginTop: 16,
+    marginBottom: 16,
+  },
+  marginVerticalLarge: {
+    marginTop: 24,
+    marginBottom: 24,
+  },
+
   marginTopSmall: {
     marginTop: 8,
   },
@@ -13,6 +22,11 @@ const Styles = StyleSheet.create({
 
   alignCenter: {
     alignItems: 'center',
+  },
+
+  full: {
+    width: '100%',
+    height: '100%',
   },
 
   'shadow-1': {

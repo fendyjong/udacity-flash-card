@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import {
-  Container,
+  Box,
   Label,
   ActionButton,
 } from '../styled-components'
@@ -16,19 +16,21 @@ class DeckList extends Component {
   }
 
   render() {
+    const { navigation } = this.props
+
     return (
-      <Container pad='none' style={{ flex: 1 }}>
-        <Container>
-          <Deck title='test' noOfCards='0' onPress={this.handleActionButton} />
+      <Box pad='none' style={{ flex: 1 }}>
+        <Box>
+          <Deck title='test' noOfCards='0' onPress={() => navigation.navigate('DeckDetail')} />
           <Deck title='test' noOfCards='0' />
-        </Container>
+        </Box>
         <ActionButton
           onPress={this.handleActionButton}
           activeOpacity={0.4}
         >
-          <Label>Button</Label>
+          <Label>+</Label>
         </ActionButton>
-      </Container>
+      </Box>
     )
   }
 }

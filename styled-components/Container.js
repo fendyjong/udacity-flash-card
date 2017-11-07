@@ -1,7 +1,7 @@
 import { View } from 'react-native'
 import styled from 'styled-components/native'
 
-const Container = styled.View`
+const Box = styled.View`
   padding: 16px;
   
   ${props => props.colorIndex && `
@@ -40,9 +40,14 @@ const Container = styled.View`
   ${props => props.wrap && `
     flex-wrap: ${props.wrap};
   `}
+  
+  ${props => props.full && `
+    width: 100%;
+    height: 100%;
+  `}
 `
 
-const Header = Container.extend`
+const Header = Box.extend`
   flex-direction: row;
   padding: 8px;
   background-color: ${props => props.theme.colorIndex['light-1']};
@@ -54,13 +59,13 @@ const Header = Container.extend`
   `}
 `
 
-const CardContainer = Container.extend`
+const CardBox = Box.extend`
   background-color: ${props => props.theme.colorIndex['light-1']};
   border-radius: 2px;
 `
 
 export {
-  Container,
-  CardContainer,
+  Box,
+  CardBox,
   Header,
 }
