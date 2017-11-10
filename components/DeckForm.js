@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { StyleSheet, TextInput } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Card, Button, Label, Heading, Box } from '../styled-components'
+import { Card, Button, Label, Heading, Box, InputText } from '../styled-components'
 import Styles from '../styled-components/Styles'
 
 class DeckForm extends Component {
@@ -28,12 +28,9 @@ class DeckForm extends Component {
         <Box align='center'
              justify='space-around'
              style={{ marginTop: 20, height: 140, width: '100%' }}>
-          <TextInput
-            style={{ width: '100%', paddingTop: 8, paddingBottom: 8 }}
-            placeholder='Title'
-            value={title}
-            onChangeText={this.handleInputTitle}
-          />
+          <InputText placeholder='Title'
+                     value={title}
+                     onChangeText={this.handleInputTitle} />
           <Button colorIndex='brand'
                   style={{ width: 160 }}>
             <Label colorIndex='light-1'>Submit</Label>

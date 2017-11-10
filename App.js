@@ -15,6 +15,7 @@ import DeckList from './components/DeckList'
 import Deck from './components/Deck'
 import DeckForm from './components/DeckForm'
 import DeckDetail from './components/DeckDetail'
+import CardForm from './components/CardForm'
 
 configureStore()
 
@@ -22,6 +23,7 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: DeckList,
     navigationOptions: {
+      header: null,
       headerTitle: 'Decks',
       headerTintColor: THEME.colorIndex['light-1'],
       headerStyle: {
@@ -35,12 +37,27 @@ const MainNavigator = StackNavigator({
   },
   Deck: {
     screen: Deck,
+    navigationOptions: {
+      headerTitle: 'Deck',
+    },
   },
   DeckForm: {
     screen: DeckForm,
+    navigationOptions: {
+      headerTitle: 'New Deck',
+    },
   },
   DeckDetail: {
     screen: DeckDetail,
+    navigationOptions: {
+      headerTitle: 'Deck Detail',
+    },
+  },
+  CardForm: {
+    screen: CardForm,
+    navigationOptions: {
+      headerTitle: 'New Card',
+    },
   },
 })
 

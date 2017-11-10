@@ -1,6 +1,7 @@
 import { Button, ActionButton } from './Button'
 import { Label, Heading, Headline, Paragraph } from './Text'
 import { Box, CardBox, Header } from './Container'
+import { InputText } from './Input'
 import Card from './Card'
 
 export const THEME = {
@@ -27,6 +28,12 @@ export const THEME = {
     // Light
     'light-1': '#FFFFFF',
     'light-2': '#F5F5F5',
+
+    // Status
+    critical: '#FF324D',
+    warning: '#FFD602',
+    ok: '#8CC800',
+    unknown: '#A8A8A8',
   },
 
   black_color: '#212121',
@@ -37,19 +44,26 @@ export const THEME = {
 }
 
 export {
+  // Layout
   Box,
   CardBox,
   Card,
 
+  // Structure
   Header,
 
+  // Button
   Button,
   ActionButton,
 
+  // Label
   Label,
   Heading,
   Headline,
   Paragraph,
+
+  // Forms
+  InputText,
 }
 
 

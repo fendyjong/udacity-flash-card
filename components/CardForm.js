@@ -1,37 +1,44 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Card, Button, Label, Heading, Box } from '../styled-components'
+import { Card, Button, Label, Heading, Box, InputText } from '../styled-components'
 import Styles from '../styled-components/Styles'
 
-class DeckDetail extends Component {
+class CardForm extends Component {
   state = {
-    title: '',
+    question: '',
+    answer: '',
+  }
+
+  handleSubmit = () => {
+    this.props.navigation.navigate('DeckDetail')
   }
 
   render() {
-    const { title } = this.state
+    const { question, answer } = this.state
 
     return (
       <Card style={StyleSheet.flatten([Styles['shadow-1'], Styles.marginTopMedium])}
             full={true}
             align='center'
             justify='center'>
-        <Box align='center'>
-          <Heading>udacicards</Heading>
-          <Heading tag='h4' colorIndex='grey-4-a'>3 Cards</Heading>
+        <Box align='center'
+             style={{ width: '100%' }}>
+          <InputText placeholder='Question'
+                     value={question}
+                     onChangeText={this.handleInputTitle} />
+          <InputText placeholder='Answer'
+                     value={answer}
+                     onChangeText={this.handleInputTitle} />
         </Box>
         <Box align='baseline'
              justify='space-around'
              style={{ marginTop: 100, height: 140 }}>
-          <Button style={{ width: 160 }}
-                  align='center'>
-            <Label>Add Card</Label>
-          </Button>
           <Button colorIndex='brand'
-                  style={{ width: 160 }}>
-            <Label colorIndex='light-1'>Start Quiz</Label>
+                  style={{ width: 160 }}
+                  onClick={this.handleSubmit}>
+            <Label colorIndex='light-1'>Submit</Label>
           </Button>
         </Box>
       </Card>
@@ -39,4 +46,4 @@ class DeckDetail extends Component {
   }
 }
 
-export default connect()(DeckDetail)
+export default connect()(CardForm)

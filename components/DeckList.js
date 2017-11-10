@@ -24,10 +24,8 @@ class DeckList extends Component {
           <Deck title='test' noOfCards='0' onPress={() => navigation.navigate('DeckDetail')} />
           <Deck title='test' noOfCards='0' />
         </Box>
-        <ActionButton
-          onPress={this.handleActionButton}
-          activeOpacity={0.4}
-        >
+        <ActionButton onPress={this.handleActionButton}
+                      activeOpacity={0.4}>
           <Label>+</Label>
         </ActionButton>
       </Box>
