@@ -9,9 +9,13 @@ const Deck = ({
                 title,
                 noOfCards,
                 onPress,
+                onMove,
+                onRelease,
               }) => (
   <Card style={StyleSheet.flatten([Styles['shadow-1'], Styles.marginTopMedium, Styles.alignCenter])}
-        onPress={onPress}>
+        onPress={onPress}
+        onMove={onMove}
+        onRelease={onRelease}>
     <Heading>{title}</Heading>
     <Heading tag='h4' colorIndex='grey-4-a'>{noOfCards} Cards</Heading>
   </Card>
@@ -22,12 +26,18 @@ Deck.defaultProps = {
   noOfCards: '',
   onPress: () => {
   },
+  onMove: () => {
+  },
+  onRelease: () => {
+  },
 }
 
 Deck.propTypes = {
   title: PropTypes.string,
   noOfCards: PropTypes.string,
   onPress: PropTypes.func,
+  onMove: PropTypes.func,
+  onRelease: PropTypes.func,
 }
 
 export default connect()(Deck)

@@ -10,15 +10,19 @@ const Card = ({
                 full,
                 children,
                 onPress,
+                onMove,
+                onRelease,
               }) => (
   <CardBox pad={pad}
            style={style}
            justify={justify}
            align={align}
            full={full}
-           onStartShouldSetResponderCapture={_ => onPress !== null}
-           onMoveShouldSetResponderCapture={_ => false}
-           onResponderRelease={onPress}>
+           onStartShouldSetResponderCapture={_ => true}
+           onMoveShouldSetResponderCapture={_ => true}
+           onResponderGrant={_ => onPress()}
+           onResponderMove={_ => onMove()}
+           onResponderRelease={_ => onRelease()}>
     {children}
   </CardBox>
 )
@@ -33,6 +37,8 @@ Card.defaultProps = {
   full: false,
   children: null,
   onPress: null,
+  onMove: null,
+  onRelease: null,
 }
 
 Card.propTypes = {
@@ -46,6 +52,8 @@ Card.propTypes = {
     PropTypes.object,
   ]),
   onPress: PropTypes.func,
+  onMove: PropTypes.func,
+  onRelease: PropTypes.func,
 }
 
 export default Card
