@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Card, Button, Label, Heading, Box, InputText } from '../styled-components'
-import Styles from '../styled-components/Styles'
+
+import { deckAdd } from '../actions/decks'
 
 class DeckForm extends Component {
   state = {
     title: '',
   }
 
-  handleInputTitle = (title) => {
-    this.setState(() => ({
-      title,
-    }))
+  handleSubmit = () => {
+    this.props.deckAdd(this.state)
+    this.props.navigation.navigate('Home')
   }
 
   render() {
@@ -30,9 +29,10 @@ class DeckForm extends Component {
              style={{ marginTop: 20, height: 140, width: '100%' }}>
           <InputText placeholder='Title'
                      value={title}
-                     onChangeText={this.handleInputTitle} />
+                     onChangeText={text => this.setState({ title: text })} />
           <Button colorIndex='brand'
-                  style={{ width: 160 }}>
+                  style={{ width: 160 }}
+                  onPress={this.handleSubmit}>
             <Label colorIndex='light-1'>Submit</Label>
           </Button>
         </Box>
@@ -41,4 +41,16 @@ class DeckForm extends Component {
   }
 }
 
-export default connect()(DeckForm)
+DeckForm.propTypes = {
+  deckAdd: PropTypes.func.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+}
+
+export default connect(
+  null,
+  {
+    deckAdd,
+  },
+)(DeckForm)

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { Card, Button, Label, Heading, Box, Anchor } from '../styled-components'
 import Styles from '../styled-components/Styles'
 
-class Quiz extends Component {
+class QuizResult extends Component {
   state = {
     title: '',
   }
@@ -19,22 +19,20 @@ class Quiz extends Component {
             align='center'
             justify='center'>
         <Box align='center'>
-          <Heading>Question?</Heading>
-          <Heading tag='h4' colorIndex='grey-4-a'>Answer</Heading>
-          <Anchor colorIndex='critical' onPress={() => console.log('Open Answer')}>Answer</Anchor>
+          <Heading>Result</Heading>
+          <Heading tag='h4' colorIndex='grey-4-a'>{123} correct</Heading>
         </Box>
         <Box align='baseline'
              justify='space-around'
              style={{ marginTop: 100, height: 140 }}>
           <Button style={{ width: 160 }}
-                  colorIndex='ok'
-                  align='center'
-                  onPress={() => navigation.navigate('QuizResult')}>
-            <Label colorIndex='light-1'>Correct</Label>
+                  colorIndex='brand'
+                  align='center'>
+            <Label colorIndex='light-1'>Replay</Label>
           </Button>
-          <Button colorIndex='critical'
-                  style={{ width: 160 }}>
-            <Label colorIndex='light-1'>Incorrect</Label>
+          <Button style={{ width: 160 }}
+                  onPress={() => navigation.navigate('Home')}>
+            <Label>Back</Label>
           </Button>
         </Box>
       </Card>
@@ -42,4 +40,4 @@ class Quiz extends Component {
   }
 }
 
-export default connect()(Quiz)
+export default connect()(QuizResult)

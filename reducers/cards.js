@@ -5,7 +5,13 @@ const initialState = {}
 
 const handlers = {
   [CARD_LIST]: (state, action) => state,
-  [CARD_ADD]: (state, action) => state,
+  [CARD_ADD]: (state, action) => {
+    // const { question, answer } = action
+
+    return {
+      ...state,
+    }
+  },
   [CARD_DELETE]: (state, action) => state,
 }
 

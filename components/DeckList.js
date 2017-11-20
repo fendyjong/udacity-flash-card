@@ -9,6 +9,7 @@ import {
 } from '../styled-components'
 
 import Deck from './Deck'
+import { deckSelect } from '../actions/decks'
 
 class DeckList extends Component {
   handleActionButton = () => {
@@ -16,20 +17,25 @@ class DeckList extends Component {
     navigation.navigate('DeckForm')
   }
 
-  handleOnPress = (url) => {
+  handleOnPress = (url, deckKey) => {
     const { navigation } = this.props
+
+    this.props.deckSelect(deckKey)
     navigation.navigate(url)
   }
 
   render() {
+    const { list } = this.props
+
     return (
       <Box pad='none' style={{ flex: 1 }}>
         <Box>
-          <Deck title='test'
-                noOfCards='0'
-                onPress={() => this.handleOnPress('DeckDetail')} />
-          <Deck title='test'
-                noOfCards='0' />
+          {Object.keys(list).map(key => (
+            <Deck key={key}
+                  title={list[key].title}
+                  noOfCards={list[key].questions.length.toString()}
+                  onPress={() => this.handleOnPress('DeckDetail', key)} />
+          ))}
         </Box>
         <ActionButton onPress={this.handleActionButton}
                       activeOpacity={0.4}>
@@ -41,9 +47,20 @@ class DeckList extends Component {
 }
 
 DeckList.propTypes = {
-  navigation: PropTypes.object.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  deckSelect: PropTypes.func.isRequired,
+  list: PropTypes.object.isRequired,
 }
 
-const mapStateToProps = () => ({})
+const mapStateToProps = ({ decks: { list } }) => ({
+  list,
+})
 
-export default connect(mapStateToProps)(DeckList)
+export default connect(
+  mapStateToProps,
+  {
+    deckSelect,
+  },
+)(DeckList)

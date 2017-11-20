@@ -6,21 +6,17 @@ import { Card, Button, Label, Heading, Box } from '../styled-components'
 import Styles from '../styled-components/Styles'
 
 class DeckDetail extends Component {
-  state = {
-    title: '',
-  }
-
   render() {
-    const { title } = this.state
-    const { navigation } = this.props
+    const { navigation, deck } = this.props
+    console.log(deck)
 
     return (
       <Card full={true}
             align='center'
             justify='center'>
         <Box align='center'>
-          <Heading>udacicards</Heading>
-          <Heading tag='h4' colorIndex='grey-4-a'>3 Cards</Heading>
+          <Heading>{deck.title}</Heading>
+          <Heading tag='h4' colorIndex='grey-4-a'>{deck.questions.length} Cards</Heading>
         </Box>
         <Box align='baseline'
              justify='space-around'
@@ -41,4 +37,18 @@ class DeckDetail extends Component {
   }
 }
 
-export default connect()(DeckDetail)
+DeckDetail.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  deck: PropTypes.object.isRequired,
+}
+
+const mapStateToProps = ({ decks: { deck } }) => ({
+  deck,
+})
+
+export default connect(
+  mapStateToProps,
+  {},
+)(DeckDetail)

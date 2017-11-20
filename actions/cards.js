@@ -5,9 +5,9 @@ export const cardList = ({ cards }) => ({
   ...cards,
 })
 
-export const cardAdd = ({ form }) => ({
+export const cardAdd = form => ({
   type: CARD_ADD,
-  ...form
+  ...form,
 })
 
 export const cardDelete = ({ id }) => ({

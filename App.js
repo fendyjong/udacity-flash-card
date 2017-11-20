@@ -12,11 +12,11 @@ import { THEME, Box } from './styled-components'
 
 import reducers from './reducers'
 import DeckList from './components/DeckList'
-import Deck from './components/Deck'
 import DeckForm from './components/DeckForm'
 import DeckDetail from './components/DeckDetail'
 import CardForm from './components/CardForm'
 import Quiz from './components/Quiz'
+import QuizResult from './components/QuizResult'
 
 configureStore()
 
@@ -34,12 +34,6 @@ const MainNavigator = StackNavigator({
         shadowOpacity: 1,
         shadowRadius: 2,
       },
-    },
-  },
-  Deck: {
-    screen: Deck,
-    navigationOptions: {
-      headerTitle: 'Deck',
     },
   },
   DeckForm: {
@@ -64,6 +58,12 @@ const MainNavigator = StackNavigator({
     screen: Quiz,
     navigationOptions: {
       headerTitle: 'Quiz',
+    },
+  },
+  QuizResult: {
+    screen: QuizResult,
+    navigationOptions: {
+      headerTitle: 'Quiz Result',
     },
   },
 })

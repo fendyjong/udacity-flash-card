@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import { Card, Button, Label, Heading, Box, InputText } from '../styled-components'
 import Styles from '../styled-components/Styles'
 
+import { cardAdd } from '../actions/cards'
+
 class CardForm extends Component {
   state = {
     question: '',
@@ -12,6 +14,7 @@ class CardForm extends Component {
   }
 
   handleSubmit = () => {
+    this.props.cardAdd(this.state)
     this.props.navigation.navigate('DeckDetail')
   }
 
@@ -27,10 +30,10 @@ class CardForm extends Component {
              style={{ width: '100%' }}>
           <InputText placeholder='Question'
                      value={question}
-                     onChangeText={this.handleInputTitle} />
+                     onChangeText={text => this.setState({ question: text })} />
           <InputText placeholder='Answer'
                      value={answer}
-                     onChangeText={this.handleInputTitle} />
+                     onChangeText={text => this.setState({ answer: text })} />
         </Box>
         <Box align='baseline'
              justify='space-around'
@@ -46,4 +49,9 @@ class CardForm extends Component {
   }
 }
 
-export default connect()(CardForm)
+export default connect(
+  null,
+  {
+    cardAdd,
+  },
+)(CardForm)
