@@ -31,7 +31,8 @@ class DeckDetail extends Component {
             <Label>Add Card</Label>
           </Button>
           <Button colorIndex='brand'
-                  style={{ width: 160 }}>
+                  style={{ width: 160 }}
+                  onPress={() => navigation.navigate('Quiz')}>
             <Label colorIndex='light-1'>Start Quiz</Label>
           </Button>
         </Box>

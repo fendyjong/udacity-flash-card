@@ -16,6 +16,7 @@ import Deck from './components/Deck'
 import DeckForm from './components/DeckForm'
 import DeckDetail from './components/DeckDetail'
 import CardForm from './components/CardForm'
+import Quiz from './components/Quiz'
 
 configureStore()
 
@@ -57,6 +58,12 @@ const MainNavigator = StackNavigator({
     screen: CardForm,
     navigationOptions: {
       headerTitle: 'New Card',
+    },
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      headerTitle: 'Quiz',
     },
   },
 })

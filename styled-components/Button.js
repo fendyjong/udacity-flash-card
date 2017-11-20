@@ -1,5 +1,6 @@
 import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
+import { Label } from './Text'
 
 const Button = styled.TouchableOpacity`
   border-radius: 3px;
@@ -15,6 +16,23 @@ const Button = styled.TouchableOpacity`
   ${props => !props.flat && props.colorIndex && `
     border: 2px solid ${props.theme.colorIndex[props.colorIndex]};
     background-color: ${props.theme.colorIndex[props.colorIndex]};
+  `}
+`
+
+const Anchor = Label.extend`
+  padding: 16px;
+
+  ${props => props.pad === 'none' && `
+    padding: 0;
+  `}
+  ${props => props.pad === 'small' && `
+    padding: 8px;
+  `}
+  ${props => props.pad === 'medium' && `
+    padding: 16px;
+  `}
+  ${props => props.pad === 'large' && `
+    padding: 32px;
   `}
 `
 
@@ -40,5 +58,6 @@ const ActionButton = Button.extend`
 
 export {
   Button,
+  Anchor,
   ActionButton,
 }

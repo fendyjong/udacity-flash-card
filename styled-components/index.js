@@ -1,4 +1,4 @@
-import { Button, ActionButton } from './Button'
+import { Button, Anchor, ActionButton } from './Button'
 import { Label, Heading, Headline, Paragraph } from './Text'
 import { Box, CardBox, Header } from './Container'
 import { InputText } from './Input'
@@ -54,6 +54,7 @@ export {
 
   // Button
   Button,
+  Anchor,
   ActionButton,
 
   // Label

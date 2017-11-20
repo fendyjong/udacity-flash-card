@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Card, Button, Label, Heading, Box } from '../styled-components'
+import { Card, Button, Label, Heading, Box, Anchor } from '../styled-components'
 import Styles from '../styled-components/Styles'
 
 class Quiz extends Component {
@@ -19,16 +19,16 @@ class Quiz extends Component {
             align='center'
             justify='center'>
         <Box align='center'>
-          <Heading>Question</Heading>
-          <Heading tag='h4' colorIndex='grey-4-a'>Answer Anchor</Heading>
+          <Heading>Question?</Heading>
+          <Heading tag='h4' colorIndex='grey-4-a'>Answer</Heading>
+          <Anchor colorIndex='critical' onPress={() => console.log('Open Answer')}>Answer</Anchor>
         </Box>
         <Box align='baseline'
              justify='space-around'
              style={{ marginTop: 100, height: 140 }}>
           <Button style={{ width: 160 }}
                   colorIndex='ok'
-                  align='center'
-                  onPress={() => navigation.navigate('CardForm')}>
+                  align='center'>
             <Label colorIndex='light-1'>Correct</Label>
           </Button>
           <Button colorIndex='critical'

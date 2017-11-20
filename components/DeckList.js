@@ -11,55 +11,14 @@ import {
 import Deck from './Deck'
 
 class DeckList extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      gesture: {
-        touch: false,
-        move: false,
-      },
-    }
-
-    //this.handleOnPress = this.handleOnPress.bind(this)
-    //this.handleOnMove = this.handleOnMove.bind(this)
-    //this.onResponderRelease = this.onResponderRelease.bind(this)
-  }
-
   handleActionButton = () => {
-    this.props.navigation.navigate('DeckForm')
-  }
-
-  handleOnPress = () => {
-    console.log('onpress')
-    this.setState({
-      gesture: {
-        touch: true,
-        move: false,
-      },
-    })
-  }
-
-  handleOnMove = () => {
-    console.log('move')
-    // const { gesture } = this.state
-    this.setState({
-      gesture: {
-        touch: false,
-        move: true,
-      },
-    })
-  }
-
-  onResponderRelease = (url) => {
-    const { gesture } = this.state
     const { navigation } = this.props
+    navigation.navigate('DeckForm')
+  }
 
-    console.log(gesture)
-
-    if (gesture.touch) {
-      navigation.navigate(url)
-    }
+  handleOnPress = (url) => {
+    const { navigation } = this.props
+    navigation.navigate(url)
   }
 
   render() {
@@ -68,10 +27,9 @@ class DeckList extends Component {
         <Box>
           <Deck title='test'
                 noOfCards='0'
-                onPress={this.handleOnPress}
-                onMove={this.handleOnMove}
-                onRelease={() => this.onResponderRelease('DeckDetail')} />
-          <Deck title='test' noOfCards='0' />
+                onPress={() => this.handleOnPress('DeckDetail')} />
+          <Deck title='test'
+                noOfCards='0' />
         </Box>
         <ActionButton onPress={this.handleActionButton}
                       activeOpacity={0.4}>
@@ -80,6 +38,10 @@ class DeckList extends Component {
       </Box>
     )
   }
+}
+
+DeckList.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = () => ({})

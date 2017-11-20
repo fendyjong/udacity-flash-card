@@ -9,20 +9,12 @@ const Card = ({
                 align,
                 full,
                 children,
-                onPress,
-                onMove,
-                onRelease,
               }) => (
   <CardBox pad={pad}
            style={style}
            justify={justify}
            align={align}
-           full={full}
-           onStartShouldSetResponderCapture={_ => true}
-           onMoveShouldSetResponderCapture={_ => true}
-           onResponderGrant={_ => onPress()}
-           onResponderMove={_ => onMove()}
-           onResponderRelease={_ => onRelease()}>
+           full={full}>
     {children}
   </CardBox>
 )
@@ -36,9 +28,6 @@ Card.defaultProps = {
   align: '',
   full: false,
   children: null,
-  onPress: null,
-  onMove: null,
-  onRelease: null,
 }
 
 Card.propTypes = {
@@ -51,9 +40,6 @@ Card.propTypes = {
     PropTypes.arrayOf(PropTypes.element),
     PropTypes.object,
   ]),
-  onPress: PropTypes.func,
-  onMove: PropTypes.func,
-  onRelease: PropTypes.func,
 }
 
 export default Card
