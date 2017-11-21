@@ -29,7 +29,7 @@ Deck.defaultProps = {
 
 Deck.propTypes = {
   title: PropTypes.string,
-  noOfCards: PropTypes.string,
+  noOfCards: PropTypes.number,
   onPress: PropTypes.func,
 }
 

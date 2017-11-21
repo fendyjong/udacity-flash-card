@@ -11,13 +11,29 @@ import {
 import Deck from './Deck'
 import { deckSelect } from '../actions/decks'
 
+import { fetchDecks } from '../utils/api'
+
 class DeckList extends Component {
+  state = {
+    list: {},
+  }
+
+  async componentWillMount() {
+    const list = await fetchDecks()
+    console.log('fetch decks')
+    if (list) {
+      this.setState({
+        list,
+      })
+    }
+  }
+
   handleActionButton = () => {
     const { navigation } = this.props
     navigation.navigate('DeckForm')
   }
 
-  handleOnPress = (url, deckKey) => {
+  handleSelectDeck = (url, deckKey) => {
     const { navigation } = this.props
 
     this.props.deckSelect(deckKey)
@@ -25,7 +41,7 @@ class DeckList extends Component {
   }
 
   render() {
-    const { list } = this.props
+    const { list } = this.state
 
     return (
       <Box pad='none' style={{ flex: 1 }}>
@@ -33,8 +49,8 @@ class DeckList extends Component {
           {Object.keys(list).map(key => (
             <Deck key={key}
                   title={list[key].title}
-                  noOfCards={list[key].questions.length.toString()}
-                  onPress={() => this.handleOnPress('DeckDetail', key)} />
+                  noOfCards={list[key].questions.length}
+                  onPress={() => this.handleSelectDeck('DeckDetail', key)} />
           ))}
         </Box>
         <ActionButton onPress={this.handleActionButton}
@@ -51,7 +67,6 @@ DeckList.propTypes = {
     navigate: PropTypes.func.isRequired,
   }).isRequired,
   deckSelect: PropTypes.func.isRequired,
-  list: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = ({ decks: { list } }) => ({
