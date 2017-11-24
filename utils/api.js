@@ -3,6 +3,7 @@ import { AsymcStorage } from 'react-native'
 const STORAGE_KEY = 'STORAGE_KEY'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 export function fetchDecks(func) {
   try {
     return AsyncStorage.getItem(STORAGE_KEY).then(result => func(result))
@@ -42,10 +43,15 @@ export async function removeDeck({ key }) {
     AsymcStorage.setItem(STORAGE_KEY, JSON.stringify(data))
   })
 =======
+=======
+>>>>>>> parent of 1150130... asyncstorage
 export function submitDeck({ title, key }) {
   return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
     [key]: title,
   }))
+<<<<<<< HEAD
+>>>>>>> parent of 1150130... asyncstorage
+=======
 >>>>>>> parent of 1150130... asyncstorage
 }
 

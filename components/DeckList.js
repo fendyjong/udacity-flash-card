@@ -9,6 +9,7 @@ import {
 } from '../styled-components'
 
 import Deck from './Deck'
+<<<<<<< HEAD
 import { deckSelect, deckList } from '../actions/decks'
 
 class DeckList extends Component {
@@ -31,6 +32,11 @@ class DeckList extends Component {
   }
 
 =======
+>>>>>>> parent of 1150130... asyncstorage
+=======
+import { deckSelect } from '../actions/decks'
+
+class DeckList extends Component {
 >>>>>>> parent of 1150130... asyncstorage
   handleActionButton = () => {
     const { navigation } = this.props

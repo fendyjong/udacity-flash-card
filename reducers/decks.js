@@ -1,10 +1,16 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { DECK_LIST, DECK_SELECT } from '../actions'
 =======
+=======
+>>>>>>> parent of 1150130... asyncstorage
 import {
   DECK_ADD, DECK_DELETE, DECK_SELECT,
   CARD_ADD,
 } from '../actions'
+<<<<<<< HEAD
+>>>>>>> parent of 1150130... asyncstorage
+=======
 >>>>>>> parent of 1150130... asyncstorage
 import { createReducer } from './utils'
 
@@ -19,6 +25,7 @@ const initialState = {
 
 const handlers = {
 <<<<<<< HEAD
+<<<<<<< HEAD
   [DECK_LIST]: (state, action) => ({
     ...state,
     list: action.list || {},
@@ -28,6 +35,8 @@ const handlers = {
     selectedDeckKey: action.key,
   }),
 =======
+=======
+>>>>>>> parent of 1150130... asyncstorage
   [DECK_ADD]: (state, action) => {
     const { title } = action
     const key = title.replace(/\s/g, '')
@@ -71,6 +80,9 @@ const handlers = {
       },
     }
   },
+<<<<<<< HEAD
+>>>>>>> parent of 1150130... asyncstorage
+=======
 >>>>>>> parent of 1150130... asyncstorage
 }
 
