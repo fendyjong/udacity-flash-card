@@ -9,7 +9,7 @@ import {
 } from '../styled-components'
 
 import Deck from './Deck'
-import { deckSelect } from '../actions/decks'
+import { deckSelect, deckList } from '../actions/decks'
 
 import { fetchDecks } from '../utils/api'
 
@@ -18,7 +18,8 @@ class DeckList extends Component {
     list: {},
   }
 
-  async componentWillMount() {
+  componentWillMount() {
+    /*
     const list = await fetchDecks()
     console.log('fetch decks')
     if (list) {
@@ -26,6 +27,8 @@ class DeckList extends Component {
         list,
       })
     }
+    */
+    this.props.deckList()
   }
 
   handleActionButton = () => {
@@ -41,7 +44,7 @@ class DeckList extends Component {
   }
 
   render() {
-    const { list } = this.state
+    const { list } = this.props
 
     return (
       <Box pad='none' style={{ flex: 1 }}>
@@ -66,6 +69,7 @@ DeckList.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
+  deckList: PropTypes.func.isRequired,
   deckSelect: PropTypes.func.isRequired,
 }
 
@@ -73,9 +77,9 @@ const mapStateToProps = ({ decks: { list } }) => ({
   list,
 })
 
-export default connect(
-  mapStateToProps,
-  {
-    deckSelect,
-  },
-)(DeckList)
+const mapDispatchToProps = dispatch => ({
+  deckList: _ => dispatch(fetchDecks(deckList)),
+  deckSelect: key => dispatch(deckSelect(key)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeckList)

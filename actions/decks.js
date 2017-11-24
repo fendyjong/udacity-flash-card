@@ -1,4 +1,8 @@
-import { DECK_ADD, DECK_DELETE, DECK_SELECT } from './index'
+import { DECK_ADD, DECK_DELETE, DECK_LIST, DECK_SELECT } from './index'
+
+export const deckList = _ => ({
+  type: DECK_LIST,
+})
 
 export const deckAdd = form => ({
   type: DECK_ADD,

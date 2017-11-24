@@ -1,4 +1,4 @@
-import { DECK_SELECT } from '../actions'
+import { DECK_LIST, DECK_SELECT } from '../actions'
 import { createReducer } from './utils'
 
 const initialState = {
@@ -11,6 +11,10 @@ const initialState = {
 }
 
 const handlers = {
+  [DECK_LIST]: (state, action) => ({
+    ...state,
+    list: action.list || {},
+  }),
   [DECK_SELECT]: (state, action) => ({
     ...state,
     selectedDeckKey: action.key,

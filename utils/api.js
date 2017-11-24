@@ -2,16 +2,9 @@ import { AsyncStorage } from 'react-native'
 
 const STORAGE_KEY = 'DECK_STORAGE'
 
-export async function fetchDecks() {
+export function fetchDecks(func) {
   try {
-    const decks = await AsyncStorage.getItem(STORAGE_KEY, (error, result) => {
-      if (result) {
-        return result
-      }
-      return '{}'
-    })
-
-    return JSON.parse(decks)
+    return AsyncStorage.getItem(STORAGE_KEY).then(result => func(result))
   } catch (e) {
     console.log(e)
     return {}
