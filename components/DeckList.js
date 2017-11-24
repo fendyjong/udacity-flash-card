@@ -11,9 +11,8 @@ import {
 import Deck from './Deck'
 import { deckSelect, deckList } from '../actions/decks'
 
-import { fetchDecks } from '../utils/api'
-
 class DeckList extends Component {
+<<<<<<< HEAD
   state = {
     list: {},
   }
@@ -31,12 +30,14 @@ class DeckList extends Component {
     this.props.deckList()
   }
 
+=======
+>>>>>>> parent of 1150130... asyncstorage
   handleActionButton = () => {
     const { navigation } = this.props
     navigation.navigate('DeckForm')
   }
 
-  handleSelectDeck = (url, deckKey) => {
+  handleOnPress = (url, deckKey) => {
     const { navigation } = this.props
 
     this.props.deckSelect(deckKey)
@@ -52,8 +53,8 @@ class DeckList extends Component {
           {Object.keys(list).map(key => (
             <Deck key={key}
                   title={list[key].title}
-                  noOfCards={list[key].questions.length}
-                  onPress={() => this.handleSelectDeck('DeckDetail', key)} />
+                  noOfCards={list[key].questions.length.toString()}
+                  onPress={() => this.handleOnPress('DeckDetail', key)} />
           ))}
         </Box>
         <ActionButton onPress={this.handleActionButton}
@@ -71,6 +72,7 @@ DeckList.propTypes = {
   }).isRequired,
   deckList: PropTypes.func.isRequired,
   deckSelect: PropTypes.func.isRequired,
+  list: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = ({ decks: { list } }) => ({

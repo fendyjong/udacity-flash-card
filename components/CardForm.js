@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Card, Button, Label, Box, InputText } from '../styled-components'
+import { Card, Button, Label, Heading, Box, InputText } from '../styled-components'
 import Styles from '../styled-components/Styles'
 
-import { addCard } from '../utils/api'
+import { cardAdd } from '../actions/cards'
 
 class CardForm extends Component {
   state = {
@@ -13,12 +13,9 @@ class CardForm extends Component {
     answer: '',
   }
 
-  handleSubmit = async () => {
-    const { question, answer } = this.state
-    const { navigation, selectedDeckKey } = this.props
-
-    await addCard({ deckKey: selectedDeckKey, question, answer })
-    navigation.navigate('DeckDetail')
+  handleSubmit = () => {
+    this.props.cardAdd(this.state)
+    this.props.navigation.navigate('DeckDetail')
   }
 
   render() {
@@ -43,7 +40,7 @@ class CardForm extends Component {
              style={{ marginTop: 100, height: 140 }}>
           <Button colorIndex='brand'
                   style={{ width: 160 }}
-                  onPress={() => this.handleSubmit()}>
+                  onClick={this.handleSubmit}>
             <Label colorIndex='light-1'>Submit</Label>
           </Button>
         </Box>
@@ -52,15 +49,9 @@ class CardForm extends Component {
   }
 }
 
-CardForm.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
-  selectedDeckKey: PropTypes.string.isRequired,
-}
-
-const mapStateToProps = ({ decks: { selectedDeckKey } }) => ({
-  selectedDeckKey,
-})
-
-export default connect(mapStateToProps)(CardForm)
+export default connect(
+  null,
+  {
+    cardAdd,
+  },
+)(CardForm)
