@@ -1,89 +1,39 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import { DECK_LIST, DECK_SELECT } from '../actions'
-=======
-=======
->>>>>>> parent of 1150130... asyncstorage
-import {
-  DECK_ADD, DECK_DELETE, DECK_SELECT,
-  CARD_ADD,
-} from '../actions'
-<<<<<<< HEAD
->>>>>>> parent of 1150130... asyncstorage
-=======
->>>>>>> parent of 1150130... asyncstorage
+import { DECK_LIST, DECK_ADD, CARD_ADD } from '../actions'
 import { createReducer } from './utils'
 
-const initialState = {
-  list: {},
-  deck: {
-    key: '',
-    title: '',
-    questions: [],
-  },
-}
+const initialState = {}
 
 const handlers = {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  [DECK_LIST]: (state, action) => ({
-    ...state,
-    list: action.list || {},
-  }),
-  [DECK_SELECT]: (state, action) => ({
-    ...state,
-    selectedDeckKey: action.key,
-  }),
-=======
-=======
->>>>>>> parent of 1150130... asyncstorage
-  [DECK_ADD]: (state, action) => {
-    const { title } = action
-    const key = title.replace(/\s/g, '')
+  [DECK_LIST]: (state, action) => {
+    const list = {}
+    Object.keys(action.decks).map(key => list[key] = { ...action.decks[key], key })
 
-    return {
-      ...state,
-      list: {
-        ...state.list,
-        [key]: {
-          title,
-          questions: [],
-        },
-      },
-    }
+    return list
   },
-  [DECK_DELETE]: (state, action) => state,
-  [DECK_SELECT]: (state, action) => {
-    const { key } = action
-    const deck = {
-      ...state.list[key],
-      key,
-    }
+  [DECK_ADD]: (state, action) => {
+    const { key, title, questions } = action
 
     return {
       ...state,
-      deck,
+      [key]: {
+        key,
+        title,
+        questions,
+      },
     }
   },
 
   [CARD_ADD]: (state, action) => {
-    const { deck, question, answer } = action
+    const { deckKey, question, answer } = action
+
+    const deck = state[deckKey]
+    deck.questions.push({ question, answer })
 
     return {
       ...state,
-      list: {
-        ...state.list,
-        [deck.key]: {
-          ...deck,
-
-        },
-      },
+      [deckKey]: deck,
     }
   },
-<<<<<<< HEAD
->>>>>>> parent of 1150130... asyncstorage
-=======
->>>>>>> parent of 1150130... asyncstorage
 }
 
 export default createReducer(initialState, handlers)

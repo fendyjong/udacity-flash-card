@@ -10,7 +10,7 @@ const Deck = ({
                 noOfCards,
                 onPress,
               }) => (
-  <TouchableOpacity style={StyleSheet.flatten([Styles.marginTopMedium])}
+  <TouchableOpacity style={StyleSheet.flatten([Styles.marginHorizontalMedium, Styles.marginVerticalMedium])}
                     onPress={onPress}
                     activeOpacity={0.8}>
     <Card style={StyleSheet.flatten([Styles['shadow-1'], Styles.alignCenter])}>

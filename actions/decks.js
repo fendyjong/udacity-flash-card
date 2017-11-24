@@ -1,20 +1,19 @@
-import { DECK_ADD, DECK_DELETE, DECK_LIST, DECK_SELECT } from './index'
+import { DECK_ADD, DECK_LIST, CARD_ADD } from './index'
 
-export const deckList = _ => ({
+export const decksList = decks => ({
   type: DECK_LIST,
+  decks,
 })
 
-export const deckAdd = form => ({
+export const deckAdd = ({ title, questions }) => ({
   type: DECK_ADD,
-  ...form,
+  title,
+  questions,
 })
 
-export const deckSelect = key => ({
-  type: DECK_SELECT,
-  key,
-})
-
-export const deckDelete = ({ id }) => ({
-  type: DECK_DELETE,
-  id,
+export const cardAdd = ({ deckKey, question, answer }) => ({
+  type: CARD_ADD,
+  deckKey,
+  question,
+  answer,
 })

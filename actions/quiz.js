@@ -1,21 +1,33 @@
-import { QUIZ_PLAY, QUIZ_ANSWER, QUIZ_RESULT } from './index'
+import { QUIZ_PLAY, QUIZ_ANSWER, QUIZ_RESET } from './index'
 
-export const getQuiz = ({ card, nextQuiz }) => ({
+/**
+ * Get next quiz
+ *
+ * @param card
+ * @param nextQuiz
+ */
+export const getQuiz = ({ currentCard, nextQuiz }) => ({
   // play card
   // get quiz question and answer
   // get quiz number 0 of 20 quiz
   type: QUIZ_PLAY,
-  card,
+  currentCard,
   nextQuiz,
 })
 
-export const answerQuiz = ({ correct }) => ({
+/**
+ * Calculate quiz correct answer
+ *
+ * @param correct
+ */
+export const answerQuiz = ({ correct, totalQuestions }) => ({
   type: QUIZ_ANSWER,
   correct,
+  totalQuestions,
 })
 
-export const quizResult = () => ({
-  type: QUIZ_RESULT,
+export const resetQuiz = () => ({
+  type: QUIZ_RESET,
 })
 
 /**

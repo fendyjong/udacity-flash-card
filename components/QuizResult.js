@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
-import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Card, Button, Label, Heading, Box, Anchor } from '../styled-components'
-import Styles from '../styled-components/Styles'
+import { connect } from 'react-redux'
+import { Card, Button, Label, Heading, Box } from '../styled-components'
+
+import { resetQuiz } from '../actions/quiz'
 
 class QuizResult extends Component {
-  state = {
-    title: '',
+  handleNavigation = (url) => {
+    const { navigation, resetQuiz } = this.props
+
+    resetQuiz()
+    navigation.navigate(url)
   }
 
   render() {
-    const { title } = this.state
-    const { navigation } = this.props
+    const { result, totalQuestions } = this.props
 
     return (
       <Card full={true}
@@ -20,18 +22,19 @@ class QuizResult extends Component {
             justify='center'>
         <Box align='center'>
           <Heading>Result</Heading>
-          <Heading tag='h4' colorIndex='grey-4-a'>{123} correct</Heading>
+          <Heading tag='h4' colorIndex='grey-4-a'>{result} of {totalQuestions} correct</Heading>
         </Box>
         <Box align='baseline'
              justify='space-around'
              style={{ marginTop: 100, height: 140 }}>
           <Button style={{ width: 160 }}
                   colorIndex='brand'
-                  align='center'>
+                  align='center'
+                  onPress={() => this.handleNavigation('Quiz')}>
             <Label colorIndex='light-1'>Replay</Label>
           </Button>
           <Button style={{ width: 160 }}
-                  onPress={() => navigation.navigate('Home')}>
+                  onPress={() => this.handleNavigation('Home')}>
             <Label>Back</Label>
           </Button>
         </Box>
@@ -40,4 +43,18 @@ class QuizResult extends Component {
   }
 }
 
-export default connect()(QuizResult)
+QuizResult.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  resetQuiz: PropTypes.func.isRequired,
+  result: PropTypes.number.isRequired,
+  totalQuestions: PropTypes.number.isRequired,
+}
+
+const mapStateToProps = ({ quiz: { result, totalQuestions } }) => ({
+  result,
+  totalQuestions,
+})
+
+export default connect(mapStateToProps, { resetQuiz })(QuizResult)

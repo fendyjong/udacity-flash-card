@@ -1,22 +1,21 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Card, Button, Label, Heading, Box } from '../styled-components'
-import Styles from '../styled-components/Styles'
+
+import { resetQuiz } from '../actions/quiz'
 
 class DeckDetail extends Component {
   render() {
-    const { navigation, deck } = this.props
-    console.log(deck)
+    const { navigation, deck: { title, questions }, resetQuiz } = this.props
 
     return (
       <Card full={true}
             align='center'
             justify='center'>
         <Box align='center'>
-          <Heading>{deck.title}</Heading>
-          <Heading tag='h4' colorIndex='grey-4-a'>{deck.questions.length} Cards</Heading>
+          <Heading>{title}</Heading>
+          <Heading tag='h4' colorIndex='grey-4-a'>{questions.length} Cards</Heading>
         </Box>
         <Box align='baseline'
              justify='space-around'
@@ -28,7 +27,10 @@ class DeckDetail extends Component {
           </Button>
           <Button colorIndex='brand'
                   style={{ width: 160 }}
-                  onPress={() => navigation.navigate('Quiz')}>
+                  onPress={() => {
+                    resetQuiz()
+                    navigation.navigate('Quiz')
+                  }}>
             <Label colorIndex='light-1'>Start Quiz</Label>
           </Button>
         </Box>
@@ -41,14 +43,16 @@ DeckDetail.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
-  deck: PropTypes.object.isRequired,
+  deck: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    questions: PropTypes.array.isRequired,
+  }).isRequired,
+  resetQuiz: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = ({ decks: { deck } }) => ({
+const mapStateToProps = ({ decks, deck }) => ({
+  decks,
   deck,
 })
 
-export default connect(
-  mapStateToProps,
-  {},
-)(DeckDetail)
+export default connect(mapStateToProps, { resetQuiz })(DeckDetail)

@@ -31,6 +31,8 @@
     "jsx-quotes": "off",
     "no-use-before-define": "off",
     "no-tabs": "off",
-    "no-undef": "off"
+    "no-undef": "off",
+    "no-shadow": "off",
+    "object-curly-newline": "off"
   }
 }

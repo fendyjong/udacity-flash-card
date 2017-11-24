@@ -1,6 +1,11 @@
 import { StyleSheet } from 'react-native'
 
 const Styles = StyleSheet.create({
+  marginHorizontalMedium: {
+    marginLeft: 16,
+    marginRight: 16,
+  },
+
   marginVerticalMedium: {
     marginTop: 16,
     marginBottom: 16,
@@ -18,6 +23,9 @@ const Styles = StyleSheet.create({
   },
   marginTopLarge: {
     marginTop: 24,
+  },
+  marginBottomMedium: {
+    marginBottom: 16,
   },
 
   alignCenter: {

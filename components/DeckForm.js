@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Card, Button, Label, Heading, Box, InputText } from '../styled-components'
 
-import { deckAdd } from '../actions/decks'
+import { addDeck } from '../utils/api'
 
 class DeckForm extends Component {
   state = {
@@ -11,7 +11,7 @@ class DeckForm extends Component {
   }
 
   handleSubmit = () => {
-    this.props.deckAdd(this.state)
+    addDeck(this.state)
     this.props.navigation.navigate('Home')
   }
 
@@ -42,15 +42,9 @@ class DeckForm extends Component {
 }
 
 DeckForm.propTypes = {
-  deckAdd: PropTypes.func.isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 }
 
-export default connect(
-  null,
-  {
-    deckAdd,
-  },
-)(DeckForm)
+export default connect()(DeckForm)

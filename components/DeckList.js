@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { FlatList } from 'react-native'
 
 import {
   Box,
@@ -9,60 +10,47 @@ import {
 } from '../styled-components'
 
 import Deck from './Deck'
-<<<<<<< HEAD
-import { deckSelect, deckList } from '../actions/decks'
+import { deckSelect } from '../actions/deck'
+import { decksList } from '../actions/decks'
+
+import { fetchDecks } from '../utils/api'
 
 class DeckList extends Component {
-<<<<<<< HEAD
-  state = {
-    list: {},
-  }
-
-  componentWillMount() {
-    /*
+  async componentWillMount() {
     const list = await fetchDecks()
-    console.log('fetch decks')
+
     if (list) {
-      this.setState({
-        list,
-      })
+      this.props.decksList(list)
     }
-    */
-    this.props.deckList()
   }
 
-=======
->>>>>>> parent of 1150130... asyncstorage
-=======
-import { deckSelect } from '../actions/decks'
-
-class DeckList extends Component {
->>>>>>> parent of 1150130... asyncstorage
   handleActionButton = () => {
     const { navigation } = this.props
     navigation.navigate('DeckForm')
   }
 
-  handleOnPress = (url, deckKey) => {
-    const { navigation } = this.props
+  handleSelectDeck = async (url, deckKey) => {
+    const { navigation, deckSelect, decks } = this.props
+    const deck = decks[deckKey]
 
-    this.props.deckSelect(deckKey)
+    deckSelect({ key: deckKey, deck })
     navigation.navigate(url)
   }
 
+  renderItem = ({ item: { key, title, questions } }) => (
+    <Deck key={key}
+          title={title}
+          noOfCards={questions.length.toString()}
+          onPress={() => this.handleSelectDeck('DeckDetail', key)} />
+  )
+
   render() {
-    const { list } = this.props
+    const { decks } = this.props
 
     return (
       <Box pad='none' style={{ flex: 1 }}>
-        <Box>
-          {Object.keys(list).map(key => (
-            <Deck key={key}
-                  title={list[key].title}
-                  noOfCards={list[key].questions.length.toString()}
-                  onPress={() => this.handleOnPress('DeckDetail', key)} />
-          ))}
-        </Box>
+        <FlatList data={decks && Object.values(decks)}
+                  renderItem={this.renderItem} />
         <ActionButton onPress={this.handleActionButton}
                       activeOpacity={0.4}>
           <Label>+</Label>
@@ -76,18 +64,16 @@ DeckList.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
-  deckList: PropTypes.func.isRequired,
   deckSelect: PropTypes.func.isRequired,
-  list: PropTypes.object.isRequired,
+  decksList: PropTypes.func.isRequired,
+  decks: PropTypes.oneOfType([
+    PropTypes.object.isRequired,
+    PropTypes.array.isRequired,
+  ]).isRequired,
 }
 
-const mapStateToProps = ({ decks: { list } }) => ({
-  list,
+const mapStateToProps = ({ decks }) => ({
+  decks,
 })
 
-const mapDispatchToProps = dispatch => ({
-  deckList: _ => dispatch(fetchDecks(deckList)),
-  deckSelect: key => dispatch(deckSelect(key)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(DeckList)
+export default connect(mapStateToProps, { decksList, deckSelect })(DeckList)

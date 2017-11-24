@@ -20,6 +20,14 @@ const Box = styled.View`
   ${props => props.pad === 'large' && `
     padding: 32px;
   `}
+  ${props => props.pad && props.pad.horizontal === 'medium' && `
+    padding-left: 16px;
+    padding-right: 16px;
+  `}
+  ${props => props.pad && props.pad.vertical === 'none' && `
+    padding-top: 0;
+    padding-bottom: 0;
+  `}
   
   ${props => props.css && `
     ${Object.keys(props.css).map(key => `${key}: ${props.css[key]}`)}
