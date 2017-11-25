@@ -35,7 +35,7 @@ class QuizResult extends Component {
           </Button>
           <Button style={{ width: 160 }}
                   onPress={() => this.handleNavigation('Home')}>
-            <Label>Back</Label>
+            <Label>Back to Decks</Label>
           </Button>
         </Box>
       </Card>

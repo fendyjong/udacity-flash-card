@@ -27,6 +27,7 @@ class DeckDetail extends Component {
           </Button>
           <Button colorIndex='brand'
                   style={{ width: 160 }}
+                  disabled={!questions.length}
                   onPress={() => {
                     resetQuiz()
                     navigation.navigate('Quiz')

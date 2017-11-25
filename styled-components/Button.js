@@ -17,6 +17,11 @@ const Button = styled.TouchableOpacity`
     border: 2px solid ${props.theme.colorIndex[props.colorIndex]};
     background-color: ${props.theme.colorIndex[props.colorIndex]};
   `}
+  
+  ${props => props.disabled && `
+    border: 2px solid ${props.theme.colorIndex.unknown};
+    background-color: ${props.theme.colorIndex.unknown};
+  `}
 `
 
 const Anchor = Label.extend`
@@ -38,9 +43,11 @@ const Anchor = Label.extend`
 
 const ActionButton = Button.extend`
   position: absolute;
-  borderRadius: 30px;
-  bottom: 24px;
-  right: 24px;
+  border-radius: 0px;
+  border-color: transparent;
+  background-color: transparent;
+  bottom: 16px;
+  right: 16px;
   
   ${props => props.position === 'bottom-center' && `
     bottom: 24px;

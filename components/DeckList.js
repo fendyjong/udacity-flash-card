@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { FlatList } from 'react-native'
+import { FlatList, Platform } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
 
 import {
+  THEME,
   Box,
-  Label,
   ActionButton,
 } from '../styled-components'
 
@@ -53,7 +54,13 @@ class DeckList extends Component {
                   renderItem={this.renderItem} />
         <ActionButton onPress={this.handleActionButton}
                       activeOpacity={0.4}>
-          <Label>+</Label>
+          {Platform.OS === 'ios'
+            ? null
+            : <Ionicons name='md-add-circle'
+                        size={60}
+                        color={THEME.colorIndex.brand} />
+          }
+
         </ActionButton>
       </Box>
     )

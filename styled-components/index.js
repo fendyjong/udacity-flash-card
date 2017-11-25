@@ -24,6 +24,7 @@ export const THEME = {
     'grey-3-a': '#3B3B3BCC',
     'grey-4': '#434343',
     'grey-4-a': '#434343CC',
+    border: '#D0D0D0',
 
     // Light
     'light-1': '#FFFFFF',

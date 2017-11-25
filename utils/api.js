@@ -1,6 +1,7 @@
 import { AsyncStorage } from 'react-native'
 
 const STORAGE_KEY = 'DECK_STORAGE'
+const SETTINGS_KEY = 'SETTINGS'
 
 export async function fetchDecks() {
   try {
@@ -86,4 +87,25 @@ export async function addCard({ deckKey, question, answer }) {
   AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
     [deckKey]: { ...deck },
   }))
+}
+
+export async function updateSettings(settings) {
+  await AsyncStorage.mergeItem(SETTINGS_KEY, JSON.stringify(settings))
+}
+
+export async function fetchSettings() {
+  try {
+    const decks = await AsyncStorage.getItem(SETTINGS_KEY, (error, result) => {
+      if (result) {
+        return result
+      }
+      return '{}'
+    })
+
+    return JSON.parse(decks)
+  } catch (e) {
+    return {
+      dailyNotification: false,
+    }
+  }
 }

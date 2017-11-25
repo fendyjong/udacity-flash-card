@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Card, Button, Label, Box, InputText } from '../styled-components'
@@ -28,29 +28,33 @@ class CardForm extends Component {
     const { question, answer } = this.state
 
     return (
-      <Card style={StyleSheet.flatten([Styles['shadow-1'], Styles.marginTopMedium])}
-            full={true}
-            align='center'
-            justify='center'>
-        <Box align='center'
-             style={{ width: '100%' }}>
-          <InputText placeholder='Question'
-                     value={question}
-                     onChangeText={text => this.setState({ question: text })} />
-          <InputText placeholder='Answer'
-                     value={answer}
-                     onChangeText={text => this.setState({ answer: text })} />
-        </Box>
-        <Box align='baseline'
-             justify='space-around'
-             style={{ marginTop: 100, height: 140 }}>
-          <Button colorIndex='brand'
-                  style={{ width: 160 }}
-                  onPress={this.handleSubmit}>
-            <Label colorIndex='light-1'>Submit</Label>
-          </Button>
-        </Box>
-      </Card>
+      <ScrollView contentContainerStyle={{ minHeight: '100%' }}>
+        <KeyboardAvoidingView behavior='padding'>
+          <Card style={StyleSheet.flatten([Styles['shadow-1']])}
+                full={true}
+                align='center'
+                justify='center'>
+            <Box align='center'
+                 style={{ width: '100%' }}>
+              <InputText placeholder='Question'
+                         value={question}
+                         onChangeText={text => this.setState({ question: text })} />
+              <InputText placeholder='Answer'
+                         value={answer}
+                         onChangeText={text => this.setState({ answer: text })} />
+            </Box>
+            <Box align='baseline'
+                 justify='space-around'
+                 style={{ marginTop: 100, height: 140 }}>
+              <Button colorIndex='brand'
+                      style={{ width: 160 }}
+                      onPress={this.handleSubmit}>
+                <Label colorIndex='light-1'>Submit</Label>
+              </Button>
+            </Box>
+          </Card>
+        </KeyboardAvoidingView>
+      </ScrollView>
     )
   }
 }

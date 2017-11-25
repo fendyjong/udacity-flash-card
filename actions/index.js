@@ -7,3 +7,5 @@ export const CARD_ADD = 'CARD_ADD'
 export const QUIZ_PLAY = 'QUIZ_PLAY'
 export const QUIZ_ANSWER = 'QUIZ_ANSWER'
 export const QUIZ_RESET = 'QUIZ_RESET'
+
+export const SETTINGS_UPDATE = 'SETTINGS_UPDATE'

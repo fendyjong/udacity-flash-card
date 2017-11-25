@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Card, Button, Label, Heading, Box, Anchor } from '../styled-components'
@@ -55,29 +56,31 @@ class Quiz extends Component {
     return (
       <Card full={true}>
         <Label>{currentQuestion}/{totalQuestions}</Label>
-        <Box align='center'>
-          {!openAnswer && <Heading>{question}</Heading>}
-          {openAnswer && <Heading tag='h4' colorIndex='grey-4-a'>{answer}</Heading>}
-          <Anchor colorIndex='critical'
-                  onPress={() => this.setState({ openAnswer: !openAnswer })}>
-            {openAnswer ? 'Question' : 'Answer'}
-          </Anchor>
-        </Box>
-        <Box align='center'
-             justify='space-around'
-             style={{ marginTop: 100, height: 140 }}>
-          <Button style={{ width: 160 }}
-                  colorIndex='ok'
-                  align='center'
-                  onPress={() => this.fetchNextQuestions(true)}>
-            <Label colorIndex='light-1'>Correct</Label>
-          </Button>
-          <Button colorIndex='critical'
-                  style={{ width: 160 }}
-                  onPress={() => this.fetchNextQuestions(false)}>
-            <Label colorIndex='light-1'>Incorrect</Label>
-          </Button>
-        </Box>
+        <ScrollView>
+          <Box align='center'>
+            {!openAnswer && <Heading tag='h2'>{question}</Heading>}
+            {openAnswer && <Heading tag='h2' colorIndex='grey-4-a'>{answer}</Heading>}
+            <Anchor colorIndex='critical'
+                    onPress={() => this.setState({ openAnswer: !openAnswer })}>
+              {openAnswer ? 'Question' : 'Answer'}
+            </Anchor>
+          </Box>
+          <Box align='center'
+               justify='space-around'
+               style={{ marginTop: 100, height: 140, bottom: 0 }}>
+            <Button style={{ width: 160 }}
+                    colorIndex='ok'
+                    align='center'
+                    onPress={() => this.fetchNextQuestions(true)}>
+              <Label colorIndex='light-1'>Correct</Label>
+            </Button>
+            <Button colorIndex='critical'
+                    style={{ width: 160 }}
+                    onPress={() => this.fetchNextQuestions(false)}>
+              <Label colorIndex='light-1'>Incorrect</Label>
+            </Button>
+          </Box>
+        </ScrollView>
       </Card>
     )
   }
