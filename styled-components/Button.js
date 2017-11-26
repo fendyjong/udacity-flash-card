@@ -2,6 +2,9 @@ import { TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 import { Label } from './Text'
 
+/**
+ * Button styling
+ */
 const Button = styled.TouchableOpacity`
   border-radius: 3px;
   padding: 8px;
@@ -24,6 +27,9 @@ const Button = styled.TouchableOpacity`
   `}
 `
 
+/**
+ * Anchor styling
+ */
 const Anchor = Label.extend`
   padding: 16px;
 
@@ -41,6 +47,9 @@ const Anchor = Label.extend`
   `}
 `
 
+/**
+ * Floating action button styling
+ */
 const ActionButton = Button.extend`
   position: absolute;
   border-radius: 0px;

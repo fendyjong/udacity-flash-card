@@ -3,11 +3,24 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Card, Button, Label, Heading, Box } from '../styled-components'
 
+import { clearLocalNotification, setLocalNotification } from '../utils/api'
+
 import { resetQuiz } from '../actions/quiz'
 
+/**
+ * Display quiz result
+ */
 class QuizResult extends Component {
+  /**
+   * Handle navigation when button is pressed
+   * Set reminder notification to tomorrow
+   *
+   * @param url
+   */
   handleNavigation = (url) => {
     const { navigation, resetQuiz } = this.props
+
+    clearLocalNotification().then(setLocalNotification)
 
     resetQuiz()
     navigation.navigate(url)

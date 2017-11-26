@@ -5,6 +5,14 @@ import PropTypes from 'prop-types'
 import { Card, Heading } from '../styled-components'
 import Styles from '../styled-components/Styles'
 
+/**
+ * Deck component for display in deckList
+ *
+ * @param title
+ * @param noOfCards
+ * @param onPress
+ * @constructor
+ */
 const Deck = ({
                 title,
                 noOfCards,

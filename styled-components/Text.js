@@ -1,6 +1,9 @@
 import { Text } from 'react-native'
 import styled from 'styled-components/native'
 
+/**
+ * Default Text styling
+ */
 const DefaultText = styled.Text`
   color: ${props => props.theme.colorIndex['grey-2']};
   font-size: 16px;
@@ -14,6 +17,9 @@ const DefaultText = styled.Text`
   `}
 `
 
+/**
+ * Label styling
+ */
 const Label = DefaultText.extend`
   ${props => props.size === 'small' && `
     font-size: 8px;
@@ -26,6 +32,9 @@ const Label = DefaultText.extend`
   `}
 `
 
+/**
+ * Heading styling
+ */
 const Heading = DefaultText.extend`
   font-size: 48px;
   
@@ -46,6 +55,9 @@ const Heading = DefaultText.extend`
   `}
 `
 
+/**
+ * Headline styling
+ */
 const Headline = DefaultText.extend`
   font-size: 64px;
   
@@ -60,6 +72,9 @@ const Headline = DefaultText.extend`
   `}
 `
 
+/**
+ * Paragraph styling
+ */
 const Paragraph = DefaultText.extend`
   font-size: 16px;
   

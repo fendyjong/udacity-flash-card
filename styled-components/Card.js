@@ -2,6 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { CardBox } from '../styled-components'
 
+/**
+ * Card styling
+ *
+ * @param pad
+ * @param style
+ * @param justify
+ * @param align
+ * @param full
+ * @param children
+ * @constructor
+ */
 const Card = ({
                 pad,
                 style,
@@ -18,8 +29,6 @@ const Card = ({
     {children}
   </CardBox>
 )
-
-// TODO https://facebook.github.io/react-native/docs/panresponder.html
 
 Card.defaultProps = {
   pad: 'medium',

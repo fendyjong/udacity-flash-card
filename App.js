@@ -50,6 +50,11 @@ const headerLeft = (navigation, url, label) => (
   </TouchableOpacity>
 )
 
+/**
+ * Setting button on the right side of the header
+ *
+ * @param navigation
+ */
 const headerRight = navigation => (
   <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
     <Box direction='row'
@@ -83,6 +88,9 @@ const headerStyle = {
   },
 }
 
+/**
+ * Main navigator
+ */
 const MainNavigator = StackNavigator({
   Home: {
     screen: DeckList,

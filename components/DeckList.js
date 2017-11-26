@@ -16,7 +16,15 @@ import { decksList } from '../actions/decks'
 
 import { fetchDecks } from '../utils/api'
 
+/**
+ * Display list of decks
+ */
 class DeckList extends Component {
+  /**
+   * Fetch list of decks from storage
+   *
+   * @returns {Promise.<void>}
+   */
   async componentWillMount() {
     const list = await fetchDecks()
 
@@ -25,11 +33,21 @@ class DeckList extends Component {
     }
   }
 
+  /**
+   * Handle add button for android
+   */
   handleActionButton = () => {
     const { navigation } = this.props
     navigation.navigate('DeckForm')
   }
 
+  /**
+   * Handle select deck on touch
+   *
+   * @param url
+   * @param deckKey
+   * @returns {Promise.<void>}
+   */
   handleSelectDeck = async (url, deckKey) => {
     const { navigation, deckSelect, decks } = this.props
     const deck = decks[deckKey]
@@ -38,6 +56,13 @@ class DeckList extends Component {
     navigation.navigate(url)
   }
 
+  /**
+   * Render deck in FlatList
+   *
+   * @param key
+   * @param title
+   * @param questions
+   */
   renderItem = ({ item: { key, title, questions } }) => (
     <Deck key={key}
           title={title}

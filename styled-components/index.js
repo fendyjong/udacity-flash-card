@@ -4,6 +4,11 @@ import { Box, CardBox, Header } from './Container'
 import { InputText } from './Input'
 import Card from './Card'
 
+/**
+ * Theme
+ *
+ * @type {{colorIndex: {brand: string, accent-1: string, accent-1-t: string, grey-1: string, grey-1-a: string, grey-2: string, grey-2-a: string, grey-3: string, grey-3-a: string, grey-4: string, grey-4-a: string, border: string, light-1: string, light-2: string, critical: string, warning: string, ok: string, unknown: string}, black_color: string, white_color: string, primary_color: string, secondary_color: string, pad: string}}
+ */
 export const THEME = {
   colorIndex: {
     brand: '#865cd6',

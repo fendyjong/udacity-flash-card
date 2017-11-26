@@ -1,4 +1,4 @@
-import { QUIZ_PLAY, QUIZ_ANSWER, QUIZ_RESET } from '../actions'
+import { QUIZ_ANSWER, QUIZ_RESET } from '../actions'
 import { createReducer } from './utils'
 
 const initialState = {
@@ -7,17 +7,13 @@ const initialState = {
 }
 
 const handlers = {
-  [QUIZ_PLAY]: (state, action) => {
-    const currentCard = action.card
-    const currentQuiz = state[currentCard].questions[action.nextQuiz]
-
-    return {
-      ...state,
-      question: {
-        ...currentQuiz,
-      },
-    }
-  },
+  /**
+   * Store correct answer
+   *
+   * @param state
+   * @param action
+   * @returns {{result: *, totalQuestions: (number|*)}}
+   */
   [QUIZ_ANSWER]: (state, action) => {
     const result = state.result + (action.correct ? 1 : 0)
     return {
@@ -26,6 +22,9 @@ const handlers = {
       totalQuestions: action.totalQuestions,
     }
   },
+  /**
+   * Reset quiz answer
+   */
   [QUIZ_RESET]: () => ({
     result: 0,
     totalQuestions: 0,

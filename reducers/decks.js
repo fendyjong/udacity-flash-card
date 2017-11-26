@@ -1,28 +1,29 @@
-import { DECK_LIST, DECK_ADD, CARD_ADD } from '../actions'
+import { DECK_LIST, CARD_ADD } from '../actions'
 import { createReducer } from './utils'
 
 const initialState = {}
 
 const handlers = {
+  /**
+   * Store deck list
+   *
+   * @param state
+   * @param action
+   * @returns {{}}
+   */
   [DECK_LIST]: (state, action) => {
     const list = {}
     Object.keys(action.decks).map(key => list[key] = { ...action.decks[key], key })
 
     return list
   },
-  [DECK_ADD]: (state, action) => {
-    const { key, title, questions } = action
-
-    return {
-      ...state,
-      [key]: {
-        key,
-        title,
-        questions,
-      },
-    }
-  },
-
+  /**
+   * Store new card to deck
+   *
+   * @param state
+   * @param action
+   * @returns {{}}
+   */
   [CARD_ADD]: (state, action) => {
     const { deckKey, question, answer } = action
 

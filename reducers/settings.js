@@ -6,6 +6,12 @@ const initialState = {
 }
 
 const handlers = {
+  /**
+   * Update settings
+   *
+   * @param state
+   * @param action
+   */
   [SETTINGS_UPDATE]: (state, action) => ({
     ...state,
     ...action.settings,

@@ -6,6 +6,9 @@ import { Card, Button, Label, Heading, Box, Anchor } from '../styled-components'
 
 import { answerQuiz } from '../actions/quiz'
 
+/**
+ * Play quiz
+ */
 class Quiz extends Component {
   state = {
     totalQuestions: 0,
@@ -16,6 +19,11 @@ class Quiz extends Component {
     openAnswer: false,
   }
 
+  /**
+   * Fetch questions and store the first {question, answer} to state to be displayed
+   *
+   * @returns {Promise.<void>}
+   */
   async componentWillMount() {
     const { questions } = this.props.deck
     const { question, answer } = questions[0]
@@ -27,6 +35,12 @@ class Quiz extends Component {
     })
   }
 
+  /**
+   * Fetch the next question in the card list
+   * Save answer (Correct or Incorrect) to redux quiz result
+   *
+   * @param correct
+   */
   fetchNextQuestions = (correct) => {
     const { currentQuestion, questions, totalQuestions } = this.state
     const { navigation, answerQuiz } = this.props

@@ -7,7 +7,15 @@ import { Card, Label, Box, THEME } from '../styled-components'
 import { updateSettings, fetchSettings } from '../utils/api'
 import { settingsUpdate } from '../actions/settings'
 
+/**
+ * Settings component
+ */
 class Settings extends Component {
+  /**
+   * Fetch settings from storage
+   *
+   * @returns {Promise.<void>}
+   */
   async componentWillMount() {
     const settings = await fetchSettings()
 
@@ -16,6 +24,11 @@ class Settings extends Component {
     }
   }
 
+  /**
+   * Set notification if user wish for daily reminder
+   *
+   * @returns {Promise.<void>}
+   */
   handleDailyNotificationChange = async () => {
     const { dailyNotification } = this.props
 

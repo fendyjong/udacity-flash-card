@@ -1,5 +1,8 @@
 import { StyleSheet } from 'react-native'
 
+/**
+ * Custom styles to be used accordingly
+ */
 const Styles = StyleSheet.create({
   marginHorizontalMedium: {
     marginLeft: 16,

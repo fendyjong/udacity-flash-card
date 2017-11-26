@@ -1,6 +1,9 @@
 import { TextInput } from 'react-native'
 import styled from 'styled-components/native'
 
+/**
+ * Input text styling
+ */
 const InputText = styled.TextInput`
     border-color: #333333;
     border-width: 1px;

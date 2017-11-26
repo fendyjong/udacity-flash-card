@@ -5,6 +5,9 @@ import { Card, Button, Label, Heading, Box } from '../styled-components'
 
 import { resetQuiz } from '../actions/quiz'
 
+/**
+ * Display deck detail
+ */
 class DeckDetail extends Component {
   render() {
     const { navigation, deck: { title, questions }, resetQuiz } = this.props

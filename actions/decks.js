@@ -1,14 +1,13 @@
-import { DECK_ADD, DECK_LIST, CARD_ADD } from './index'
+import { DECK_LIST, CARD_ADD } from './index'
 
+/**
+ * Populate redux with decks list
+ *
+ * @param decks
+ */
 export const decksList = decks => ({
   type: DECK_LIST,
   decks,
-})
-
-export const deckAdd = ({ title, questions }) => ({
-  type: DECK_ADD,
-  title,
-  questions,
 })
 
 export const cardAdd = ({ deckKey, question, answer }) => ({

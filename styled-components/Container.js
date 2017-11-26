@@ -1,6 +1,9 @@
 import { View } from 'react-native'
 import styled from 'styled-components/native'
 
+/**
+ * Box container styling
+ */
 const Box = styled.View`
   padding: 16px;
   
@@ -55,6 +58,9 @@ const Box = styled.View`
   `}
 `
 
+/**
+ * Top header container styling
+ */
 const Header = Box.extend`
   flex-direction: row;
   padding: 8px;
@@ -67,6 +73,9 @@ const Header = Box.extend`
   `}
 `
 
+/**
+ * Default card container styling
+ */
 const CardBox = Box.extend`
   background-color: ${props => props.theme.colorIndex['light-1']};
   border-radius: 2px;

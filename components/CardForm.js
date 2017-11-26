@@ -8,24 +8,46 @@ import Styles from '../styled-components/Styles'
 import { cardAdd } from '../actions/decks'
 import { addCard } from '../utils/api'
 
+/**
+ * Card form for creating new card to selected deck
+ */
 class CardForm extends Component {
   state = {
     question: '',
     answer: '',
+    invalidFormQuestion: null,
+    invalidFormAnswer: null,
   }
 
+  /**
+   * Handle submit form
+   *
+   * @returns {Promise.<void>}
+   */
   handleSubmit = async () => {
     const { deck: { key }, navigation } = this.props
     const { question, answer } = this.state
+    let valid = true
 
-    await addCard({ deckKey: key, ...this.state })
-    this.props.cardAdd({ deckKey: key, question, answer })
+    if (question.trim() === '') {
+      valid = false
+      this.setState({ invalidFormQuestion: 'Please fill in question' })
+    }
+    if (answer.trim() === '') {
+      valid = false
+      this.setState({ invalidFormAnswer: 'Please fill in answer' })
+    }
 
-    navigation.navigate('DeckDetail')
+    if (valid) {
+      await addCard({ deckKey: key, ...this.state })
+      this.props.cardAdd({ deckKey: key, question, answer })
+
+      navigation.navigate('DeckDetail')
+    }
   }
 
   render() {
-    const { question, answer } = this.state
+    const { question, answer, invalidFormQuestion, invalidFormAnswer } = this.state
 
     return (
       <ScrollView contentContainerStyle={{ minHeight: '100%' }}>
@@ -39,9 +61,13 @@ class CardForm extends Component {
               <InputText placeholder='Question'
                          value={question}
                          onChangeText={text => this.setState({ question: text })} />
+              {invalidFormQuestion
+              && <Label colorIndex='critical'>{invalidFormQuestion}</Label>}
               <InputText placeholder='Answer'
                          value={answer}
                          onChangeText={text => this.setState({ answer: text })} />
+              {invalidFormAnswer
+              && <Label colorIndex='critical'>{invalidFormAnswer}</Label>}
             </Box>
             <Box align='baseline'
                  justify='space-around'

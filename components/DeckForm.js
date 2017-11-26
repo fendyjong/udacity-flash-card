@@ -1,23 +1,37 @@
 import React, { Component } from 'react'
-import { ScrollView, KeyboardAvoidingView, View } from 'react-native'
+import { ScrollView, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Card, Button, Label, Heading, Box, InputText } from '../styled-components'
 
 import { addDeck } from '../utils/api'
 
+/**
+ * Deck Form for create new Deck
+ */
 class DeckForm extends Component {
   state = {
     title: '',
+    invalidForm: null,
   }
 
+  /**
+   * Handle submit form
+   */
   handleSubmit = () => {
-    addDeck(this.state)
-    this.props.navigation.navigate('Home')
+    // Validate form
+    if (this.state.title.trim() !== '') {
+      addDeck(this.state)
+      this.props.navigation.navigate('Home')
+    } else {
+      this.setState({
+        invalidForm: 'Please fill in title!',
+      })
+    }
   }
 
   render() {
-    const { title } = this.state
+    const { title, invalidForm } = this.state
 
     return (
       <ScrollView contentContainerStyle={{ minHeight: '100%' }}>
@@ -33,6 +47,7 @@ class DeckForm extends Component {
               <InputText placeholder='Title'
                          value={title}
                          onChangeText={text => this.setState({ title: text })} />
+              {invalidForm && <Label colorIndex='critical'>{invalidForm}</Label>}
               <Button colorIndex='brand'
                       style={{ width: 160 }}
                       onPress={this.handleSubmit}>
